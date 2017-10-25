@@ -15,16 +15,20 @@ import java.io.PrintWriter;
 public class ServletInputText extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+        String text = request.getParameter("text");
         PrintWriter writer = response.getWriter();
+
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        writer.print("Ilość znaków w podanym tekscie: " + TextAnalyzator.lenghtCalc(request.getParameter("text")) + " \n<br>");
-        writer.print("Ilość znaków bez spacji: " + TextAnalyzator.lenghtWithoutWhiteChar(request.getParameter("text")) + " \n<br>");
-        writer.print("Ilość słów: " + TextAnalyzator.wordCounting(request.getParameter("text")) + " \n<br>");
-        writer.print("Tekst jest palindromem? " + TextAnalyzator.palindromeCheck(request.getParameter("text")) + "<br>");
+
+        writer.print("<p>" + text + "</p><br>");
+        writer.print("<h2>Ilość znaków w podanym tekscie: " + TextAnalyzator.lenghtCalc(text) + " <h2><br>");
+        writer.print("<h2>Ilość znaków bez spacji: " + TextAnalyzator.lenghtWithoutWhiteChar(text) + " <h2><br>");
+        writer.print("<h2>Ilość słów: " + TextAnalyzator.wordCounting(text) + " <h2><br>");
+        writer.print("<h2>Tekst jest palindromem? " + TextAnalyzator.palindromeCheck(text) + "<h2><br>");
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }
